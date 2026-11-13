@@ -12,7 +12,6 @@ import {
 
 const sections = [
   {
-    title: "ACCOUNT",
     items: [
       { label: "My Work Profile", icon: UserRound },
       { label: "Office Assets", icon: Folder },

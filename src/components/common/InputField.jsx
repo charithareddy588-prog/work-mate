@@ -1,3 +1,4 @@
+
 function InputField({
   label,
   placeholder,
@@ -5,33 +6,33 @@ function InputField({
   onChange,
   type = "text",
   icon: Icon,
-  rightElement,
   required = false,
 }) {
   return (
     <div className="w-full">
-      <label className="form-label">{label}</label>
+      <label className="mb-2 block text-sm font-medium text-[#45445A]">
+        {label}
+      </label>
 
-      <div className="relative flex items-center">
+      <div className="relative w-full">
         {Icon && (
           <Icon
-            size={15}
-            className="absolute left-3 text-[#9674FF]"
+            size={19}
+            strokeWidth={2}
+            className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[#8957FF]"
           />
         )}
 
         <input
           type={type}
+          placeholder={placeholder}
           value={value}
           onChange={onChange}
-          placeholder={placeholder}
           required={required}
-          className={`form-input ${Icon ? "pl-9" : ""} ${rightElement ? "pr-10" : ""}`}
+          className={`h-[54px] w-full rounded-xl border border-[#D5D5E5] bg-white text-sm text-[#17182B] outline-none transition focus:border-[#8957FF] focus:ring-2 focus:ring-[#8957FF]/10 ${
+            Icon ? "pl-11 pr-4" : "px-4"
+          }`}
         />
-
-        {rightElement && (
-          <div className="absolute right-3">{rightElement}</div>
-        )}
       </div>
     </div>
   );

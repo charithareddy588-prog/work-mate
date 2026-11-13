@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Mail, Building2, Check } from "lucide-react";
 
-import AuthHeader from "../components/auth/AuthHeader";
 import PasswordInput from "../components/auth/PasswordInput";
 import Button from "../components/common/Button";
 import InputField from "../components/common/InputField";
 import StatusBar from "../components/common/StatusBar";
 import { useAuth } from "../context/AuthContext";
+
+import workmateLogo from "../assets/images/workmate-logo.png";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -69,16 +70,31 @@ function SignUp() {
   };
 
   return (
-    <div className="mobile-screen pb-8">
+    <div className="mobile-screen min-h-screen bg-[#FAFAFF] pb-8">
 
-      {/* Status Bar - Time, Network, WiFi and Battery */}
+      {/* Status Bar */}
       <StatusBar />
 
-      {/* Sign Up Content */}
       <div className="px-5">
 
-        <AuthHeader />
+        {/* Work Mate Logo */}
+        <div className="mb-7 flex flex-col items-center pt-7 text-center">
+          <img
+            src={workmateLogo}
+            alt="Work Mate Logo"
+            className="mb-3 h-[52px] w-[52px] object-contain"
+          />
 
+          <h2 className="text-lg font-bold text-[#17182B]">
+            Work Mate
+          </h2>
+
+          <p className="mt-1 text-xs text-gray-500">
+            Register Using Your Credentials
+          </p>
+        </div>
+
+        {/* Sign Up Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
 
           <InputField
@@ -93,6 +109,7 @@ function SignUp() {
             required
           />
 
+          {/* Phone Number */}
           <div>
             <label className="form-label">
               Phone Number
@@ -112,12 +129,13 @@ function SignUp() {
                 onChange={(e) =>
                   updateField("phone", e.target.value)
                 }
-                className="form-input flex-1"
+                className="form-input min-w-0 flex-1"
                 required
               />
             </div>
           </div>
 
+          {/* Company ID */}
           <InputField
             label="Company ID"
             placeholder="Enter Company ID"
@@ -129,6 +147,7 @@ function SignUp() {
             required
           />
 
+          {/* Password */}
           <PasswordInput
             label="Password"
             value={form.password}
@@ -137,6 +156,7 @@ function SignUp() {
             }
           />
 
+          {/* Confirm Password */}
           <PasswordInput
             label="Confirm Password"
             placeholder="Confirm My Password"
@@ -148,6 +168,7 @@ function SignUp() {
 
           {/* Terms and Privacy Agreement */}
           <div className="flex items-start gap-2 text-[10px]">
+
             <button
               type="button"
               onClick={() => setAgreed(!agreed)}
@@ -185,20 +206,24 @@ function SignUp() {
                 privacy policy
               </button>
             </p>
+
           </div>
 
+          {/* Error Message */}
           {error && (
             <p className="text-xs text-red-500">
               {error}
             </p>
           )}
 
+          {/* Sign Up Button */}
           <Button type="submit">
             Sign Up
           </Button>
 
         </form>
 
+        {/* Sign In Link */}
         <p className="mt-12 text-center text-[10px]">
           Already have an account?{" "}
           <button

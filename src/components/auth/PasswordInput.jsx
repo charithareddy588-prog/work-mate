@@ -1,39 +1,57 @@
+
 import { useState } from "react";
-import { Eye, EyeOff, LockKeyhole } from "lucide-react";
+import {
+  LockKeyhole,
+  Eye,
+  EyeOff,
+} from "lucide-react";
 
 function PasswordInput({
   label,
-  placeholder = "My Password",
   value,
   onChange,
 }) {
-  const [show, setShow] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div>
-      <label className="form-label">{label}</label>
+    <div className="w-full">
+      <label className="mb-2 block text-sm font-medium text-[#45445A]">
+        {label}
+      </label>
 
-      <div className="relative">
+      <div className="relative w-full">
+
+        {/* Lock Icon */}
         <LockKeyhole
-          size={15}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-primary"
+          size={19}
+          strokeWidth={2}
+          className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[#8957FF]"
         />
 
+        {/* Password Input */}
         <input
-          type={show ? "text" : "password"}
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
           value={value}
           onChange={onChange}
-          placeholder={placeholder}
-          className="form-input pl-9 pr-10"
+          required
+          className="h-[54px] w-full rounded-xl border border-[#D5D5E5] bg-white pl-11 pr-12 text-sm text-[#17182B] outline-none transition focus:border-[#8957FF] focus:ring-2 focus:ring-[#8957FF]/10"
         />
 
+        {/* Show / Hide Password */}
         <button
           type="button"
-          onClick={() => setShow(!show)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-primary"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8957FF]"
+          aria-label={showPassword ? "Hide password" : "Show password"}
         >
-          {show ? <EyeOff size={16} /> : <Eye size={16} />}
+          {showPassword ? (
+            <EyeOff size={19} />
+          ) : (
+            <Eye size={19} />
+          )}
         </button>
+
       </div>
     </div>
   );

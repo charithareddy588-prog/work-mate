@@ -1,5 +1,6 @@
+
 import InputField from "../common/InputField";
-import { UserRound, CalendarDays, BriefcaseBusiness } from "lucide-react";
+import { UserRound, BriefcaseBusiness } from "lucide-react";
 
 function ProfileForm({ profile, setProfile }) {
   const update = (key, value) => {
@@ -9,12 +10,15 @@ function ProfileForm({ profile, setProfile }) {
   return (
     <div className="space-y-4 rounded-xl bg-white p-4 shadow-soft">
       <div>
-        <h3 className="text-xs font-bold">Personal Data Information</h3>
+        <h3 className="text-xs font-bold">
+          Personal Data Information
+        </h3>
         <p className="mt-1 text-[10px] text-gray-400">
           Your personal data
         </p>
       </div>
 
+      {/* Profile Photo */}
       <div className="flex flex-col items-center py-3">
         <label className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-xl border border-dashed border-purple-300 bg-purple-50 text-primary">
           <UserRound size={30} />
@@ -33,6 +37,7 @@ function ProfileForm({ profile, setProfile }) {
         </p>
       </div>
 
+      {/* First Name */}
       <InputField
         label="First Name"
         placeholder="First Name"
@@ -41,6 +46,7 @@ function ProfileForm({ profile, setProfile }) {
         icon={UserRound}
       />
 
+      {/* Last Name */}
       <InputField
         label="Last Name"
         placeholder="Last Name"
@@ -49,33 +55,38 @@ function ProfileForm({ profile, setProfile }) {
         icon={UserRound}
       />
 
-      <div>
-        <label className="form-label">Date of Birth</label>
-        <div className="relative">
-          <CalendarDays
-            size={15}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-primary"
-          />
-          <input
-            type="date"
-            value={profile.dob}
-            onChange={(e) => update("dob", e.target.value)}
-            className="form-input pl-9"
-          />
-        </div>
+      {/* Date of Birth */}
+      <div className="w-full">
+        <label className="form-label mb-2 block">
+          Date of Birth
+        </label>
+
+        <input
+          type="date"
+          value={profile.dob}
+          onChange={(e) => update("dob", e.target.value)}
+          className="form-input block w-full"
+          style={{ paddingLeft: "16px" }}
+        />
       </div>
 
-      <div>
-        <label className="form-label">Position</label>
-        <div className="relative">
+      {/* Position */}
+      <div className="w-full">
+        <label className="form-label mb-2 block">
+          Position
+        </label>
+
+        <div className="relative w-full">
           <BriefcaseBusiness
-            size={15}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-primary"
+            size={18}
+            className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-primary"
           />
+
           <select
             value={profile.position}
             onChange={(e) => update("position", e.target.value)}
-            className="form-input appearance-none pl-9"
+            className="form-input block w-full appearance-none"
+            style={{ paddingLeft: "48px" }}
           >
             <option value="">Select Position</option>
             <option>Junior Full Stack Developer</option>

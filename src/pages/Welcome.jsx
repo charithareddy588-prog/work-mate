@@ -1,9 +1,10 @@
 
-import { UserRound } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../components/common/Button";
 import StatusBar from "../components/common/StatusBar";
+
+import successLogo from "../assets/images/success-logo.png";
 
 function Welcome() {
   const navigate = useNavigate();
@@ -22,8 +23,13 @@ function Welcome() {
       {/* Welcome Popup */}
       <div className="relative z-10 rounded-t-2xl bg-white px-6 pb-10 pt-16 text-center">
 
-        <div className="absolute -top-12 left-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-2xl bg-primary text-white shadow-lg">
-          <UserRound size={30} />
+        {/* Success Logo */}
+        <div className="absolute -top-12 left-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center overflow-hidden rounded-2xl bg-primary shadow-lg">
+          <img
+            src={successLogo}
+            alt="Success Logo"
+            className="h-full w-full object-contain"
+          />
         </div>
 
         <h1 className="text-lg font-bold">

@@ -3,11 +3,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Mail } from "lucide-react";
 
-import AuthHeader from "../components/auth/AuthHeader";
 import PasswordInput from "../components/auth/PasswordInput";
 import InputField from "../components/common/InputField";
 import Button from "../components/common/Button";
 import StatusBar from "../components/common/StatusBar";
+
+import workmateLogo from "../assets/images/workmate-logo.png";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -36,20 +37,42 @@ function SignIn() {
   };
 
   return (
-    <div className="mobile-screen min-h-screen px-5">
+    <div className="mobile-screen min-h-screen bg-[#FAFAFF] px-5">
+
       {/* Status Bar */}
       <StatusBar />
 
-      <AuthHeader />
+      {/* Work Mate Logo */}
+      <div className="mb-10 flex flex-col items-center pt-7 text-center">
+        <img
+          src={workmateLogo}
+          alt="Work Mate Logo"
+          className="mb-3 h-[52px] w-[52px] object-contain"
+        />
 
-      <div className="mb-7 text-center">
-        <h1 className="text-xl font-bold">Welcome Back!</h1>
-        <p className="mt-2 text-xs text-gray-500">
+        <h2 className="text-lg font-bold text-[#17182B]">
+          Work Mate
+        </h2>
+
+        <p className="mt-1 text-xs text-gray-500">
+          Register Using Your Credentials
+        </p>
+      </div>
+
+      {/* Welcome Heading */}
+      <div className="mb-9 text-center">
+        <h1 className="text-[25px] font-bold text-[#17182B]">
+          Welcome Back!
+        </h1>
+
+        <p className="mt-2 text-sm text-gray-500">
           Sign in to continue using Work Mate
         </p>
       </div>
 
+      {/* Sign In Form */}
       <form onSubmit={handleLogin} className="space-y-5">
+
         <InputField
           label="Email"
           placeholder="Enter Your Email"
@@ -66,24 +89,33 @@ function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
+        {/* Forgot Password */}
         <div className="text-right">
           <button
             type="button"
             onClick={() => navigate("/forgot-password")}
-            className="text-xs text-primary"
+            className="text-sm text-primary"
           >
             Forgot Password?
           </button>
         </div>
 
+        {/* Error Message */}
         {error && (
-          <p className="text-xs text-red-500">{error}</p>
+          <p className="text-xs text-red-500">
+            {error}
+          </p>
         )}
 
-        <Button type="submit">Sign In</Button>
+        {/* Sign In Button */}
+        <Button type="submit">
+          Sign In
+        </Button>
+
       </form>
 
-      <p className="mt-10 text-center text-xs">
+      {/* Sign Up Link */}
+      <p className="mt-12 text-center text-sm text-[#17182B]">
         Don't have an account?{" "}
         <button
           type="button"
@@ -93,6 +125,7 @@ function SignIn() {
           Sign Up
         </button>
       </p>
+
     </div>
   );
 }
